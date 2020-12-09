@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="gap_standard_16dp">16dp</dimen>
+    <dimen name="gap_quarter_4dp">4dp</dimen>
+    <dimen name="gap_one_n_half_24dp">24dp</dimen>
+    <dimen name="major_18sp">18sp</dimen>
+    <dimen name="minor_14sp">14sp</dimen>
+    <dimen name="gap_half_8dp">8dp</dimen>
+    <dimen name="large_24sp">24sp</dimen>
+    <dimen name="gap_one_n_quarter_20dp">20dp</dimen>
+</resources>

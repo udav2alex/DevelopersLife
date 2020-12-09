@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/gap_standard_16dp">
+
+    <TextView
+        android:id="@+id/tv_pic_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_standard_16dp"
+        android:text="@string/not_available"
+        android:textAlignment="center"
+        android:textSize="@dimen/major_18sp"
+        tools:text="Вася Петров" />
+
+    <TextView
+        android:id="@+id/tv_pic_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_quarter_4dp"
+        android:text="@string/not_available"
+        android:textAlignment="center"
+        android:textSize="@dimen/minor_14sp"
+        tools:text="13.04.2020 12:23" />
+
+    <ImageView
+        android:id="@+id/iv_pic_pic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_one_n_quarter_20dp"
+        android:contentDescription="@string/not_available"
+        tools:layout_height="200dp"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_pic_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gap_standard_16dp"
+        android:text="@string/not_available"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        tools:text="Когда я уезжаю в отпуск, пока все остальные пытаются фиксить баги" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/gap_half_8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_pic_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/gap_half_8dp"
+            android:text="@string/not_available"
+            android:textSize="@dimen/minor_14sp"
+            tools:text="rating: 12," />
+
+        <TextView
+            android:id="@+id/tv_pic_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/not_available"
+            android:textSize="@dimen/minor_14sp"
+            tools:text="comments: 10" />
+
+    </LinearLayout>
+
+</LinearLayout>
