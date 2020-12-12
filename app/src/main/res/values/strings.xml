@@ -3,4 +3,5 @@
     <string name="author_pattern">Author: %1$s</string>
     <string name="not_available">Not available</string>
     <string name="comments_quantity">comments: %1$d</string>
+    <string name="rating_pattern">rating: %1$d</string>
 </resources>

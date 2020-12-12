@@ -4,11 +4,11 @@ import java.util.*
 
 data class Comment(
         val id: Int,
-        val date: Date? = null,
+        val date: String = "",
         val text: String = "",
         val voteCount: Int = 0,
 
         val pic: Pic,
-        val author: Author? = null
+        val author: String = ""
 ) {
 }

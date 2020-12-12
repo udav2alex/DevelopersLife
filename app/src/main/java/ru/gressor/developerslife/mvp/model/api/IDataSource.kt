@@ -9,16 +9,17 @@ import ru.gressor.developerslife.mvp.model.api.entity.PicsPage
 
 interface IDataSource {
 
-    @GET("/latest/{page}?json=true")
+    @GET("/latest/{pageNumber}?json=true")
     fun getPics(
-            @Path("page") page: Int,
-            @Query("pageSize") size: Int
+            @Path("pageNumber") pageNumber: Int,
+            @Query("pageSize") pageSize: Int
     ): Single<PicsPage>
 
-    @GET("/comments/entry/{id}?json=true")
+    @GET("/comments/entry/{picId}?json=true")
     fun getComments(
-            @Path("id") picId: Int
+            @Path("picId") picId: Int
     ): Single<CommentsPage>
+
 
     // TODO delete!
     @GET("/comments/entry/17068?json=true")

@@ -2,7 +2,7 @@ package ru.gressor.developerslife.mvp.model.api.entity
 
 import com.google.gson.annotations.Expose
 
-data class RetrofitComment(
+data class ApiComment(
         @Expose private val id: Int = 0,
         @Expose private val text: String = "",
         @Expose private val date: String = "",

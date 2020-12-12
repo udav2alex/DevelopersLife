@@ -1,14 +1,13 @@
 package ru.gressor.developerslife.mvp.model.entity
 
-import java.util.*
-
 data class Pic(
         val id: Int,
-        val author: Author? = null,
-        val date: Date? = null,
-        val desc: String = "",
-        val image: String = "",
-        val prevImage: String = "",
-        val votes: Int = 0
+        val author: String = "",
+        val date: String = "",
+        val description: String = "",
+        val imageSrc: String = "",
+        val previewSrc: String = "",
+        val votesCount: Int = 0,
+        val commentsCount: Int = 0
 ) {
 }

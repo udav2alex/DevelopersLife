@@ -1,5 +1,6 @@
 package ru.gressor.developerslife.mvp.presenter
 
+import android.widget.Toast
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 import ru.gressor.developerslife.mvp.view.MainView
@@ -15,7 +16,8 @@ class MainPresenter : MvpPresenter<MainView>() {
         router.replaceScreen(Screens.main())
     }
 
-    fun backClicked() {
+    fun backPressed() {
+        viewState.showError(Throwable("Goodbye! ;)"))
         router.exit()
     }
 }

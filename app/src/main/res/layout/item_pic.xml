@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -27,7 +28,7 @@
         tools:text="13.04.2020 12:23" />
 
     <ImageView
-        android:id="@+id/iv_pic_pic"
+        android:id="@+id/iv_pic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/gap_one_n_quarter_20dp"
@@ -46,6 +47,7 @@
         tools:text="Когда я уезжаю в отпуск, пока все остальные пытаются фиксить баги" />
 
     <LinearLayout
+        android:id="@+id/ll_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
