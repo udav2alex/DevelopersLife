@@ -4,5 +4,5 @@ interface ICommentView: IListView {
     fun setDate(date: String)
     fun setText(text: String)
     fun setVoteCount(count: Int)
-    fun setAuthor(count: String)
+    fun setAuthor(author: String)
 }

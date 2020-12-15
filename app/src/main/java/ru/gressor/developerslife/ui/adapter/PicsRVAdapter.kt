@@ -4,29 +4,29 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import ru.gressor.developerslife.R
 import ru.gressor.developerslife.databinding.ItemPicBinding
 import ru.gressor.developerslife.mvp.model.image.IImageLoader
 import ru.gressor.developerslife.mvp.presenter.PicsPresenter
-import ru.gressor.developerslife.ui.image.GlideImageLoader
+import ru.gressor.developerslife.mvp.presenter.list.IPicsListPresenter
 import javax.inject.Inject
 
 class PicsRVAdapter(
-        private val presenter: PicsPresenter.PicsListPresenter
-) : RecyclerView.Adapter<ItemPicViewHolder>() {
+        private val presenter: IPicsListPresenter
+) : RecyclerView.Adapter<PicViewHolder>() {
 
     @Inject
     lateinit var imageLoader: IImageLoader<ImageView>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            ItemPicViewHolder(
+            PicViewHolder(
                     ItemPicBinding.inflate(
                             LayoutInflater.from(parent.context), parent, false),
                     imageLoader
             )
 
-    override fun onBindViewHolder(holder: ItemPicViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PicViewHolder, position: Int) {
         holder.pos = position
+        holder.itemView.setOnClickListener { presenter.itemClickListener?.invoke(holder) }
         presenter.bindView(holder)
     }
 

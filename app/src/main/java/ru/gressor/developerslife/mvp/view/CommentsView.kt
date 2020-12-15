@@ -1,4 +1,10 @@
 package ru.gressor.developerslife.mvp.view
 
-interface CommentsView {
+import moxy.MvpView
+import moxy.viewstate.strategy.alias.AddToEndSingle
+
+@AddToEndSingle
+interface CommentsView : MvpView {
+    fun updateList()
+    fun showError(throwable: Throwable)
 }

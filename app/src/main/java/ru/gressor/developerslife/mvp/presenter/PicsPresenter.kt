@@ -8,6 +8,7 @@ import ru.gressor.developerslife.mvp.model.repo.PicsRepo
 import ru.gressor.developerslife.mvp.presenter.list.IPicsListPresenter
 import ru.gressor.developerslife.mvp.view.PicsView
 import ru.gressor.developerslife.mvp.view.list.IPicView
+import ru.gressor.developerslife.navigation.Screens
 import javax.inject.Inject
 
 class PicsPresenter : MvpPresenter<PicsView>() {
@@ -43,6 +44,15 @@ class PicsPresenter : MvpPresenter<PicsView>() {
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         loadPicsData()
+
+        picsListPresenter.itemClickListener = {
+            val pic = picsListPresenter.pics[it.pos]
+            if (pic.commentsCount != 0) {
+                router.navigateTo(Screens.commentsList(pic))
+            } else {
+                viewState.showNoComments()
+            }
+        }
     }
 
     private fun loadPicsData() {

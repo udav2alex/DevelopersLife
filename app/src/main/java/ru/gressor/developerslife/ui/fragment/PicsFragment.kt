@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import ru.gressor.developerslife.R
@@ -17,12 +18,10 @@ import ru.gressor.developerslife.ui.BackPressedListener
 import ru.gressor.developerslife.ui.adapter.PicsRVAdapter
 
 class PicsFragment : MvpAppCompatFragment(), PicsView, BackPressedListener {
-    companion object {
-        fun newInstance() = PicsFragment()
-    }
-
     private val presenter by moxyPresenter {
-        PicsPresenter().apply { App.instance.appComponent.inject(this) }
+        PicsPresenter().apply {
+            App.instance.appComponent.inject(this)
+        }
     }
 
     private lateinit var rvPicsList: RecyclerView
@@ -36,7 +35,7 @@ class PicsFragment : MvpAppCompatFragment(), PicsView, BackPressedListener {
 
         rvPicsList = view.findViewById(R.id.rv_pics_list)
         rvPicsList.apply {
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = LinearLayoutManager(requireContext())
             adapter = PicsRVAdapter(presenter.picsListPresenter).apply {
                 App.instance.appComponent.inject(this)
             }
@@ -45,8 +44,14 @@ class PicsFragment : MvpAppCompatFragment(), PicsView, BackPressedListener {
         return view
     }
 
+    override fun showNoComments() {
+        Toast.makeText(context, context?.getString(R.string.pic_has_no_comments), Toast.LENGTH_SHORT)
+                .show()
+    }
+
     override fun showError(throwable: Throwable) {
-        Toast.makeText(requireContext(), throwable.message, Toast.LENGTH_LONG).show()
+        Toast.makeText(context, throwable.message, Toast.LENGTH_LONG)
+                .show()
     }
 
     override fun updateList() {
@@ -55,5 +60,9 @@ class PicsFragment : MvpAppCompatFragment(), PicsView, BackPressedListener {
 
     override fun backPressed(): Boolean {
         return presenter.backPressed()
+    }
+
+    companion object {
+        fun newInstance() = PicsFragment()
     }
 }

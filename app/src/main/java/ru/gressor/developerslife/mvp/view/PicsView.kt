@@ -7,4 +7,5 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 interface PicsView : MvpView {
     fun updateList()
     fun showError(throwable: Throwable)
+    fun showNoComments()
 }
