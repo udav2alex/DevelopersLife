@@ -19,9 +19,4 @@ interface IDataSource {
     fun getComments(
             @Path("picId") picId: Int
     ): Single<CommentsPage>
-
-
-    // TODO delete!
-    @GET("/comments/entry/17068?json=true")
-    fun getMyComments(): Single<CommentsPage>
 }

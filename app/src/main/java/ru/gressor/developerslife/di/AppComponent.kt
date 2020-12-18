@@ -13,10 +13,12 @@ import javax.inject.Singleton
 @Singleton
 @Component(
         modules = [
+            ApiModule::class,
             AppModule::class,
+            CacheModule::class,
             CiceroneModule::class,
+            DatabaseModule::class,
             ImageModule::class,
-            RetrofitModule::class,
             RepoModule::class
         ]
 )

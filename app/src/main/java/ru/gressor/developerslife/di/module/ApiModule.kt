@@ -7,11 +7,14 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.gressor.developerslife.mvp.model.api.IDataSource
+import ru.gressor.developerslife.mvp.model.network.INetworkStatus
+import ru.gressor.developerslife.ui.App
+import ru.gressor.developerslife.ui.network.AndroidNetworkStatus
 import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-class RetrofitModule {
+class ApiModule {
 
     @Named("baseURL")
     @Provides
@@ -28,4 +31,7 @@ class RetrofitModule {
                     .build()
                     .create(IDataSource::class.java)
 
+    @Singleton
+    @Provides
+    fun getNetworkStatus(app: App): INetworkStatus = AndroidNetworkStatus(app)
 }
