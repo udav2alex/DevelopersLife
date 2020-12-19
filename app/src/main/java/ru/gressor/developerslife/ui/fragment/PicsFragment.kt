@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import ru.gressor.developerslife.R
+import ru.gressor.developerslife.di.pics.PicsSubComponent
 import ru.gressor.developerslife.mvp.presenter.PicsPresenter
 import ru.gressor.developerslife.mvp.view.PicsView
 import ru.gressor.developerslife.ui.App
@@ -18,9 +19,13 @@ import ru.gressor.developerslife.ui.BackPressedListener
 import ru.gressor.developerslife.ui.adapter.PicsRVAdapter
 
 class PicsFragment : MvpAppCompatFragment(), PicsView, BackPressedListener {
+
+    var picsSubComponent: PicsSubComponent? = App.instance.initPicsSubComponent()
+
     private val presenter by moxyPresenter {
+        picsSubComponent = App.instance.initPicsSubComponent()
         PicsPresenter().apply {
-            App.instance.appComponent.inject(this)
+            picsSubComponent?.inject(this)
         }
     }
 
@@ -37,7 +42,7 @@ class PicsFragment : MvpAppCompatFragment(), PicsView, BackPressedListener {
         rvPicsList.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = PicsRVAdapter(presenter.picsListPresenter).apply {
-                App.instance.appComponent.inject(this)
+                picsSubComponent?.inject(this)
             }
         }
 
@@ -60,6 +65,11 @@ class PicsFragment : MvpAppCompatFragment(), PicsView, BackPressedListener {
 
     override fun backPressed(): Boolean {
         return presenter.backPressed()
+    }
+
+    override fun release() {
+        picsSubComponent = null
+        App.instance.releasePicsSubComponent()
     }
 
     companion object {

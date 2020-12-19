@@ -1,30 +1,20 @@
-package ru.gressor.developerslife.di.module
+package ru.gressor.developerslife.di.comments.module
 
 import dagger.Module
 import dagger.Provides
+import ru.gressor.developerslife.di.comments.CommentsScope
 import ru.gressor.developerslife.mvp.model.api.IDataSource
 import ru.gressor.developerslife.mvp.model.cache.CommentsCache
-import ru.gressor.developerslife.mvp.model.cache.PicsCache
+import ru.gressor.developerslife.mvp.model.cache.room.RoomCommentsCache
+import ru.gressor.developerslife.mvp.model.db.DevLifeDB
 import ru.gressor.developerslife.mvp.model.network.INetworkStatus
 import ru.gressor.developerslife.mvp.model.repo.CommentsRepo
-import ru.gressor.developerslife.mvp.model.repo.PicsRepo
 import ru.gressor.developerslife.mvp.model.repo.retrofit.RetrofitCommentsRepo
-import ru.gressor.developerslife.mvp.model.repo.retrofit.RetrofitPicsRepo
-import javax.inject.Singleton
 
 @Module
-class RepoModule {
+class CommentsModule {
 
-    @Singleton
-    @Provides
-    fun getPicsRepo(
-            iNetworkStatus: INetworkStatus,
-            iDataSource: IDataSource,
-            picsCache: PicsCache
-    ): PicsRepo =
-            RetrofitPicsRepo(iNetworkStatus, iDataSource, picsCache)
-
-    @Singleton
+    @CommentsScope
     @Provides
     fun getCommentsRepo(
             iNetworkStatus: INetworkStatus,
@@ -32,4 +22,8 @@ class RepoModule {
             commentsCache: CommentsCache
     ): CommentsRepo =
             RetrofitCommentsRepo(iNetworkStatus, iDataSource, commentsCache)
+
+    @CommentsScope
+    @Provides
+    fun getCommentsCache(devLifeDB: DevLifeDB): CommentsCache = RoomCommentsCache(devLifeDB)
 }

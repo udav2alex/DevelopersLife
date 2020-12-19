@@ -16,7 +16,7 @@ class RetrofitPicsRepo(
 ) : PicsRepo {
     // TODO deal with it!
     private val pageNumber = 0
-    private val pageSize = 5
+    private val pageSize = 50
 
     override fun getPics(): Single<List<Pic>> =
             networkStatus.isOnlineSingle()
