@@ -30,14 +30,15 @@ class PicsPresenter : MvpPresenter<PicsView>() {
 
         override fun bindView(view: IPicView) {
             val position = view.pos
+            val pic = pics[position]
 
-            view.setAuthor(pics[position].author)
-            view.setDate(pics[position].date)
-            view.setDescription(pics[position].description)
-            view.setImageSrc(pics[position].imageSrc)
-            view.setPreviewSrc(pics[position].previewSrc)
-            view.setVotesCount(pics[position].votesCount)
-            view.setCommentsCount(pics[position].commentsCount)
+            view.setAuthor(pic.author)
+            view.setDate(pic.date)
+            view.setDescription(pic.description)
+            view.setImageSrc(pic.imageSrc)
+            view.setPreviewSrc(pic.previewSrc)
+            view.setVotesCount(pic.votesCount)
+            view.setCommentsCount(pic.commentsCount)
         }
     }
 
@@ -73,5 +74,10 @@ class PicsPresenter : MvpPresenter<PicsView>() {
     fun backPressed(): Boolean {
         router.exit()
         return true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewState.release()
     }
 }

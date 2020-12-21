@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import ru.gressor.developerslife.R
+import ru.gressor.developerslife.di.pics.PicsSubComponent
 import ru.gressor.developerslife.mvp.model.entity.Pic
 import ru.gressor.developerslife.mvp.presenter.CommentsPresenter
 import ru.gressor.developerslife.mvp.view.CommentsView
@@ -18,10 +19,13 @@ import ru.gressor.developerslife.ui.BackPressedListener
 import ru.gressor.developerslife.ui.adapter.CommentsRVAdapter
 
 class CommentsFragment: MvpAppCompatFragment(), CommentsView, BackPressedListener {
+
+    private var commentsSubComponent = App.instance.initCommentsSubComponent()
+
     private val presenter by moxyPresenter {
         val pic = arguments?.getParcelable<Pic>(ARGUMENT_TAG_PIC) as Pic
         CommentsPresenter(pic).apply {
-            App.instance.appComponent.inject(this)
+            commentsSubComponent?.inject(this)
         }
     }
 
@@ -38,7 +42,7 @@ class CommentsFragment: MvpAppCompatFragment(), CommentsView, BackPressedListene
         rvCommentsList.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = CommentsRVAdapter(presenter.commentsListPresenter).apply {
-                App.instance.appComponent.inject(this)
+                commentsSubComponent?.inject(this)
             }
         }
 
@@ -55,6 +59,11 @@ class CommentsFragment: MvpAppCompatFragment(), CommentsView, BackPressedListene
 
     override fun backPressed(): Boolean {
         return presenter.backPressed()
+    }
+
+    override fun release() {
+        commentsSubComponent = null
+        App.instance.releaseCommentsSubComponent()
     }
 
     companion object {

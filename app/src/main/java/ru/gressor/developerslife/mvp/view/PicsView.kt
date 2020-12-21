@@ -8,4 +8,5 @@ interface PicsView : MvpView {
     fun updateList()
     fun showError(throwable: Throwable)
     fun showNoComments()
+    fun release()
 }
